@@ -349,7 +349,10 @@ def doit(dir, files):
         t.bind("<Key-%d>" % i, lambda e, c=c, i=i: setdepth(e, c, i))
     c.bind("<Button-4>", lambda e: scroll(e, -1))
     c.bind("<Button-5>", lambda e: scroll(e, 1))
-    c.bind("<Button-2>", ascend)
+    if os.name == 'nt':
+        c.bind("<Button-3>", ascend)
+    else:
+        c.bind("<Button-2>", ascend)
     c.tag_bind("all", "<Button-1>", descend)
     c.tag_bind("all", "<Enter>", schedule_tip)
     c.tag_bind("all", "<Leave>", cancel_tip)
